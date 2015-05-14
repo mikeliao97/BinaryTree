@@ -112,7 +112,23 @@ class BinaryTree
 
 		return nil
 	end
-		
+	
+
+	def dfs_rec(target, current_node = @tree)
+		if(current_node.value == target)
+			return current_node
+		end 
+
+		unless current_node.left == nil
+			return dfs_rec(target, current_node.left)
+		end
+
+		unless current_node.right == nil
+			return dfs_rec(target, current_node.right)
+		end
+	
+
+	end	
 		
 
 
@@ -124,13 +140,10 @@ driver = BinaryTree.new
  
 driver.build_tree([100, 0, 1000, 3232, 32, 2, 1])
 
-puts driver.tree
-puts driver.tree.left
-puts driver.tree.right
 
 puts "*************************"
-puts driver.depth_first_search(32)
-
+puts driver.dfs_rec(1)
+puts nil
 
 =begin
 driver.array_of_nodes.each do |node|
