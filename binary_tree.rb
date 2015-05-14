@@ -17,7 +17,7 @@ class BinaryTree
 		end
 	end
 	
-	def insert(value, node = @tree)
+	def insert(value, node)
 		unless value == node.value
 	
 				if value < node.value
@@ -39,14 +39,50 @@ class BinaryTree
 
 		end
 	end
+	
+	def breadth_first_search(target)	
+		#get the original serach node, which is @tree
+		node = @tree
+		
+		#the queue array
+		queue = []
+		queue << node		
+		
+		while(queue.empty? == false)
+			#search the node, if it 
+			current_node = queue.shift
 
-	def print_tree
+			if(current_node.value == target)
+				return current_node
+				puts "I am done bro!"
+			end
+			#check the left side
+			if(current_node.left != nil)
+				queue << current_node.left
+			end
+			
+			#check the right  side
+			if(current_node.right != nil)
+				queue << current_node.right
+			end
+				
+		end
 		
-		
+		return nil #if it does not find a value
+			
+	end
+
+	def depth_first_search(target)
 
 	end
-end
 
+
+	def dfs_rec(target)
+
+
+	end	
+
+end
 
 
 driver = BinaryTree.new
@@ -54,7 +90,14 @@ driver = BinaryTree.new
 driver.build_tree([100, 0, 1000, 3232, 32, 2, 1])
 
 puts driver.tree
+puts driver.tree.left
+puts driver.tree.right
 
+puts "**************************"
+puts driver.breadth_first_search(43)
+
+
+=begin
 driver.array_of_nodes.each do |node|
 	puts node
 	puts ""
@@ -62,10 +105,4 @@ driver.array_of_nodes.each do |node|
 end
 
 
-
-
-
-
-
-
-
+=end
