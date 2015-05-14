@@ -68,19 +68,54 @@ class BinaryTree
 				
 		end
 		
-		return nil #if it does not find a value
+		return nil #if it does not find a value:
 			
 	end
 
 	def depth_first_search(target)
+		node = @tree
+		
+		queue = []
+		queue << node
+		queue << node
+		
+		visited = []
+		visited << node
+		
+		while(queue.empty? == false)
+			current_node = queue.pop
 
+			if(current_node.value == target)
+				return current_node
+				puts "I am done bro"
+			end
+
+
+			#if node is not included in the visited
+			#check the left and put it in the stack
+			if(current_node.left != nil)
+				if visited.include?(current_node.left) == false
+					queue << current_node.left
+					visited << current_node.left
+				end
+								 	 
+			else
+				if(current_node.right != nil)
+					if visited.include?(current_node.right) == false
+						queue << current_node.right
+						queue << current_node.right
+					end 						
+				end
+			end
+				
+		end
+
+		return nil
 	end
+		
+		
 
 
-	def dfs_rec(target)
-
-
-	end	
 
 end
 
@@ -93,8 +128,8 @@ puts driver.tree
 puts driver.tree.left
 puts driver.tree.right
 
-puts "**************************"
-puts driver.breadth_first_search(43)
+puts "*************************"
+puts driver.depth_first_search(32)
 
 
 =begin
